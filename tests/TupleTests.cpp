@@ -1,0 +1,127 @@
+#include"../src/tuples.h"
+#include<gtest/gtest.h>
+#include<iostream>
+
+TEST(ExampleTests, TupleDefinition){
+    Tuple a{4.3, -4.2, 3.1, 1.0};
+    EXPECT_EQ(1.0, a.get_w());
+    ASSERT_EQ(3.1, a.get_z());
+    ASSERT_EQ(-4.2, a.get_y());
+    EXPECT_EQ(4.3, a.get_x());
+}
+TEST(ExampleTests, PointDefinition){
+    Tuple a = tuples::point(1,2,3);
+    ASSERT_EQ(1.0, a.get_w());
+}
+
+TEST(ExampleTests, VectorDefinition){
+    Tuple a = tuples::vector(4,-4,3);
+    ASSERT_EQ(0.0, a.get_w());
+}
+
+TEST(ExampleTests, AdditionTest){
+    Tuple a = tuples::vector(4,-4,3);
+    Tuple b = tuples::vector(1,3,5);
+    Tuple c = tuples::add(a,b);
+    ASSERT_EQ(5, c.get_x());
+    ASSERT_EQ(-1, c.get_y());
+    ASSERT_EQ(8, c.get_z());
+    ASSERT_EQ(0, c.get_w());
+}
+TEST(ExampleTests, AdditionFail){
+    Tuple a = tuples::point(4,-4,3);
+    Tuple b = tuples::point(1,3,5);
+
+    ASSERT_THROW(tuples::add(a,b), std::exception);
+}
+TEST(ExampleTests, SubtractionTest){
+    Tuple a = tuples::vector(4,-4,3);
+    Tuple b = tuples::vector(1,3,5);
+    Tuple c = tuples::subtract(a,b);
+    ASSERT_EQ(3, c.get_x());
+    ASSERT_EQ(-7, c.get_y());
+    ASSERT_EQ(-2, c.get_z());
+    ASSERT_EQ(0, c.get_w());
+}
+TEST(ExampleTests, SubtractionFail){
+    Tuple a = tuples::vector(4,-4,3);
+    Tuple b = tuples::point(1,3,5);
+
+    ASSERT_THROW(tuples::subtract(a,b), std::exception);
+}
+
+TEST(ExampleTests, DivFail){
+    Tuple a = tuples::vector(4,-4,3);
+
+    ASSERT_THROW(tuples::divide(a, 0), std::exception);
+    ASSERT_EQ(4, a.get_x());
+}
+
+TEST(ExampleTests, Magnitude){
+    Tuple a = tuples::vector(4,-4,3);
+
+    ASSERT_THROW(tuples::divide(a, 0), std::exception);
+    ASSERT_EQ(4, a.get_x());
+}
+
+TEST(ExampleTests, Normalise){
+    Tuple a = tuples::vector(3,4,0);
+    tuples::normalise(a);
+    
+    ASSERT_EQ(0.6, a.get_x());
+    ASSERT_EQ(0.8, a.get_y());
+    ASSERT_EQ(0, a.get_z());
+    ASSERT_EQ(0, a.get_w());
+}
+TEST(ExampleTests, DotProduct){
+    Tuple a = tuples::vector(1,2,3);
+    Tuple b = tuples::vector(2,3,4);
+    
+    ASSERT_EQ(20, tuples::dot(a, b));
+}
+
+TEST(ExampleTests, CrossProduct){
+    Tuple a = tuples::vector(1,2,3);
+    Tuple b = tuples::vector(2,3,4);
+    Tuple c = tuples::cross(a, b);
+    Tuple d = tuples::cross(b, a);
+    //For c
+    ASSERT_EQ(-1, c.get_x());
+    ASSERT_EQ(2, c.get_y());
+    ASSERT_EQ(-1, c.get_z());
+    ASSERT_EQ(0, c.get_w());
+    //For d
+    ASSERT_EQ(1, d.get_x());
+    ASSERT_EQ(-2, d.get_y());
+    ASSERT_EQ(1, d.get_z());
+    ASSERT_EQ(0, d.get_w());
+}
+
+TEST(ExampleTests, ColorTest){
+    Color c = Color{-0.5,0.4,1.7};
+    
+    ASSERT_EQ(-0.5, c.red());
+    ASSERT_EQ(0.4, c.green());
+    ASSERT_EQ(1.7, c.blue());
+}
+
+TEST(ExampleTests, ColorAdd){
+    Color c = Color{-0.5,0.4,1.7};
+    Color k = Color{-0.5,0.4,1.7};
+    Color l = color::c_add(c, k);
+    ASSERT_EQ(-1, l.red());
+    ASSERT_EQ(0.8, l.green());
+    ASSERT_EQ(3.4, l.blue());
+}
+TEST(ExampleTests, ColorMult){
+    Color c = Color{-0.5,1.3,1.7};
+    
+    Color k = color::c_mult(c, 3);
+    ASSERT_EQ(-1.5, c.red());
+
+    std::cout<<c.green()<<std::endl;
+    int eq = c.green() > 3.9; //Error due to double precision 
+    std::cout<<eq<<std::endl;
+    ASSERT_EQ(5.1, c.blue());
+    
+}

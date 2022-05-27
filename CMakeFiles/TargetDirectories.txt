@@ -1,0 +1,3 @@
+/Users/arnav25/Desktop/3D_Renderer/CMakeFiles/vectors.dir
+/Users/arnav25/Desktop/3D_Renderer/CMakeFiles/edit_cache.dir
+/Users/arnav25/Desktop/3D_Renderer/CMakeFiles/rebuild_cache.dir
