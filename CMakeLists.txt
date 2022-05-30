@@ -17,11 +17,13 @@ enable_testing()
 set(HEADERS 
     src/tuples.h
     src/canvas.h
+    src/matrix.h
 )
 
 set(SOURCES 
     src/tuples.cpp
     src/canvas.cpp
+    src/matrix.cpp
 
     
 )
