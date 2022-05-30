@@ -47,9 +47,10 @@ public:
 
     
 };
+
 namespace tuples{
 
-inline const Tuple* ZERO = new Tuple(0,0,0,0);
+extern const Tuple ZERO;
 Tuple point(double x, double y, double z);
 Tuple vector(double x, double y, double z);
 Tuple add(Tuple a, Tuple b);

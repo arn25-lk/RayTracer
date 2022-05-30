@@ -20,7 +20,7 @@ Tuple::Tuple():
 
 }
 
-
+const Tuple tuples::ZERO = Tuple{0,0,0,0};
 
 Tuple tuples::point(double x, double y, double z)
 { 
