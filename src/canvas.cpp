@@ -18,9 +18,63 @@ height{height}, width{width}
     }
     this->canvas = canvas;
 }
-
+//Define destructor 
+Canvas::~Canvas()
+{
+    for(int i=0; i < height; i++)
+    {
+        delete[] canvas[i];
+    }
+    delete[] canvas;
+}
 //Can pass arrays as a pointer/ compile-time length or unspecified length
 
+Canvas::Canvas(const Canvas& canv)
+{
+    this->height = canv.height;
+    this->width = canv.width;
+    Color** canvas = new Color* [height];
+    for(int i=0; i < height; i++)
+    {
+        Color* row = new Color[width];
+        for(int j=0; j < width; j++)
+        {
+            row[j] = canv.canvas[i][j];
+        }
+        canvas[i] = row;
+    }
+    
+    this->canvas = canvas;
+}
+
+Canvas& Canvas::operator=(const Canvas& other)
+{
+    if(this != &other)
+    {
+        this->height = other.height;
+        this->width = other.width;
+        Color** canv = new Color* [this->height];
+        for(int i=0; i < this->height; i++)
+        {
+            Color* row = new Color[this->width];
+            for(int j=0; j < this->width; j++)
+            {
+                row[j] = other.canvas[i][j];
+            }
+            canv[i] = row;
+        }
+
+        for(int i=0; i < height; i++)
+        {
+            delete[] this->canvas[i];
+        }
+        delete[] this->canvas;
+
+        this->canvas = canv;
+
+    }
+    return *this;
+}
 void Canvas::write_pixel(int w, int h, Color c)
 {
     if((w>=0 && w<=this->getWidth()-1) && (h>=0 && h<=this->getHeight()-1))
@@ -28,6 +82,7 @@ void Canvas::write_pixel(int w, int h, Color c)
         this->canvas[h][w] = c;
     }
     
+
 
 }
 
@@ -81,7 +136,7 @@ Proj& tick(Env& env, Proj& proj, Canvas& c){
     return proj;
 }
 
-int main(){
+/*int main(){
     Proj p;
     Canvas* canv = new Canvas(900,550);
     p.position = tuples::point(0,1,0);
@@ -105,4 +160,4 @@ int main(){
     delete canv;
     std::cout<<i<<std::endl;
 }
-
+*/

@@ -13,12 +13,10 @@ public:
     
     inline int getWidth() const {return width;}
     inline int getHeight() const {return height;}
+    ~Canvas(); // Destructor
+    Canvas& operator=(const Canvas& other); // Re-assignment operator 
+    Canvas(const Canvas& canv); //Copy constructor
     void write_pixel(int w, int h, Color c);
     int canvas_to_ppm();
 };
-namespace canvas
-{
-    
-
-}
 #endif

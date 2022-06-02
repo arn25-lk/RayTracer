@@ -20,7 +20,7 @@ Tuple::Tuple():
 
 }
 
-const Tuple tuples::ZERO = Tuple{0,0,0,0};
+const Tuple tuples::ZERO = Tuple{0,0,0,1};
 
 Tuple tuples::point(double x, double y, double z)
 { 
@@ -69,32 +69,27 @@ Tuple& tuples::negate(Tuple& a)
 
 }
 
-Tuple& tuples::multiply(Tuple& a, double scale)
+Tuple tuples::multiply(const Tuple& a, double scale)
 {
-    a.set_x(a.get_x()*scale);
-    a.set_y(a.get_y()*scale);
-    a.set_z(a.get_z()*scale);
-    a.set_w(a.get_w()*scale);
-    return a;
+    Tuple result{a.get_x() * scale, a.get_y() * scale, a.get_z() * scale, a.get_w() * scale};
+    return result;
 }
-Tuple& tuples::divide(Tuple& a, double scale)
+Tuple tuples::divide(const Tuple& a, double scale)
 {
     if(scale == 0)
     {
         throw std::invalid_argument("Dividing by Zero");
     }
-    a.set_x(a.get_x()/scale);
-    a.set_y(a.get_y()/scale);
-    a.set_z(a.get_z()/scale);
-    a.set_w(a.get_w()/scale);
-    return a;
+    Tuple result{a.get_x() / scale, a.get_y() / scale, a.get_z() / scale, a.get_w() / scale};
+
+    return result;
 }
 
-double tuples::magnitude(Tuple& a)
+double tuples::magnitude(const Tuple& a)
 {
     return sqrt((a.get_x()*a.get_x()) +  (a.get_y()*a.get_y()) + (a.get_z()*a.get_z()) + (a.get_w()*a.get_w()));
 }
-Tuple& tuples::normalise(Tuple& a)
+Tuple tuples::normalise(const Tuple& a)
 {
     double scale{magnitude(a)};
     if(scale==0){
@@ -119,6 +114,11 @@ Tuple tuples::cross(Tuple a, Tuple b){
     
     );   
 }
+bool Tuple::operator==(const Tuple& rhs)
+{
+    return this->x == rhs.x && this->y == rhs.y && this->z == rhs.z && this->w == rhs.w;
+}
+
 Color::Color(double r, double g, double b):
     r{r}, g{g}, b{b}
 {

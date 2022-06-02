@@ -1,6 +1,11 @@
 #include "matrix.h"
 #include <vector>
 #include <iostream>
+#include <cmath>
+#include "canvas.h"
+#include "tuples.h"
+#include "canvas.cpp"
+#include "tuples.cpp"
 
 static double arr[4][4] =
 {
@@ -10,7 +15,7 @@ static double arr[4][4] =
     {0,0,0,1}
 };
 
-Matrix IDENTITY_MATRIX = Matrix(arr);
+Matrix IDENTITY_MATRIX = Matrix(arr); //Make a const matrix
 
 
 Matrix::Matrix(unsigned int nr_rows, unsigned int nr_cols, double value)
@@ -44,7 +49,7 @@ Matrix::Matrix(double arr[][4])
 
 
 
-Matrix Matrix::operator+(Matrix& a)
+Matrix Matrix::operator+(const Matrix& a)
 {   
     Matrix result{this->nr_rows, this->nr_cols, 0};
 
@@ -61,7 +66,7 @@ Matrix Matrix::operator+(Matrix& a)
     
 }
 
-Matrix Matrix::operator-(Matrix& b)
+Matrix Matrix::operator-(const Matrix& b)
 {   
     Matrix result{this->nr_rows, this->nr_cols, 0};
 
@@ -77,7 +82,7 @@ Matrix Matrix::operator-(Matrix& b)
     return result;
 }
 
-Matrix Matrix::operator*(Matrix& b)
+Matrix Matrix::operator*(const Matrix& b)
 {
     Matrix result{this->nr_rows, b.nr_cols};
     if(this->nr_cols != b.nr_rows){
@@ -97,19 +102,32 @@ Matrix Matrix::operator*(Matrix& b)
 
 
 
-bool Matrix::operator==(Matrix& a)
+bool Matrix::operator==(const Matrix& a)
 {
     for(int i = 0; i < this->nr_rows; i++)
     {
         for(int j = 0; j < this->nr_cols; j++)
         {
-            if(this->m_matrix[i][j] != a(i,j))
+            if(this->m_matrix[i][j] != a.m_matrix[i][j])
             {
                 return false;
             }
         }
     }
     return true;
+}
+
+Matrix Matrix::operator/(const double a)
+{
+    Matrix result{this->nr_rows, this->nr_cols};
+
+    for(int i = 0; i < this->nr_rows; i++){
+        for(int j = 0; j < this->nr_cols; j++)
+        {
+            result(i,j) = this->m_matrix[i][j] / a;
+        }
+    }
+    return result;
 }
 
 Tuple Matrix::operator*(Tuple& b)
@@ -219,4 +237,124 @@ void Matrix::print(){
         }
         std::cout << std::endl;
     }
+
 }
+namespace util{
+    bool approximatelyEqual(double a, double b, float epsilon)
+    {
+        return std::fabs(a - b) <= ( (fabs(a) < fabs(b) ? fabs(b) : fabs(a)) * epsilon);
+    }
+
+    Matrix translation(double x, double y, double z)
+    {
+        Matrix result{4, 4};
+        result(0, 0) = 1;
+        result(1, 1) = 1;
+        result(2, 2) = 1;
+        result(3, 3) = 1;
+        result(0, 3) = x;
+        result(1, 3) = y;
+        result(2, 3) = z;
+        return result;
+    }
+    Matrix shearing(double x, double y, double z)
+    {
+        Matrix result{4, 4};
+        result(0, 0) = 1;
+        result(1, 1) = 1;
+        result(2, 2) = 1;
+        result(3, 3) = 1;
+        result(1, 0) = x;
+        result(0, 1) = y;
+        result(0, 2) = z;
+        return result;
+    }
+    Matrix scaling(double x, double y, double z)
+    {
+        Matrix result{4, 4};
+        result(0, 0) = x;
+        result(1, 1) = y;
+        result(2, 2) = z;
+        result(3, 3) = 1;
+        return result;
+    }
+    double degree_to_radians(double degrees)
+    {
+        return degrees * M_PI / 180;
+    }
+    double radians_to_degree(double radians)
+    {
+        return radians * 180 / M_PI;
+    }
+    Matrix rotationX(double theta)
+    {
+        Matrix result{4, 4};
+        result(0, 0) = 1;
+        result(1, 1) = cos(theta);
+        result(1, 2) = -sin(theta);
+        result(2, 1) = sin(theta);
+        result(2, 2) = cos(theta);
+        result(3, 3) = 1;
+        return result;
+    }
+    Matrix rotationY(double theta)
+    {
+        Matrix result{4, 4};
+        result(0, 0) = cos(theta);
+        result(0, 2) = sin(theta);
+        result(1, 1) = 1;
+        result(2, 0) = -sin(theta);
+        result(2, 2) = cos(theta);
+        result(3, 3) = 1;
+        return result;
+    }
+
+    Matrix rotationZ(double theta)
+    {
+        Matrix result{4,4};
+        result(0, 0) = cos(theta);
+        result(0, 1) = -sin(theta);
+        result(1, 0) = sin(theta);
+        result(1, 1) = cos(theta);
+        result(2, 2) = 1;
+        result(3, 3) = 1;
+        return result;
+    }
+    Matrix shearing(double xTy, double xTz, double yTx, double yTz, double zTx, double zTy)
+    {
+        Matrix result{4, 4};
+        result(0, 0) = 1;
+        result(1, 1) = 1;
+        result(2, 2) = 1;
+        result(3, 3) = 1;
+        result(1, 0) = yTx;
+        result(0, 1) = xTy;
+        result(0, 2) = xTz;
+        result(2, 0) = zTx;
+        result(1, 2) = yTz;
+        result(2, 1) = zTy;
+        return result;
+    }
+
+
+
+}
+
+/*int main()
+{
+    unsigned int height{500}; unsigned int width{500};
+    int we = (width*3)/8;
+    Canvas *canvas = new Canvas(height, width);
+    Tuple p = tuples::point(0,we,0);
+    Matrix rot = util::rotationZ(util::degree_to_radians(30));
+    for(int i = 0; i < 12; i++){
+        p = rot * p;
+        canvas->write_pixel(p.get_x()+250, p.get_y()+250, Color(1,0,0));
+    }
+    canvas->canvas_to_ppm();
+    delete canvas;
+    return 0;
+}*/
+
+
+

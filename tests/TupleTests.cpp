@@ -66,12 +66,13 @@ TEST(ExampleTests, Magnitude){
 
 TEST(ExampleTests, Normalise){
     Tuple a = tuples::vector(3,4,0);
-    tuples::normalise(a);
+    Tuple b = tuples::normalise(a);
+
     
-    ASSERT_EQ(0.6, a.get_x());
-    ASSERT_EQ(0.8, a.get_y());
-    ASSERT_EQ(0, a.get_z());
-    ASSERT_EQ(0, a.get_w());
+    ASSERT_EQ(0.6, b.get_x());
+    ASSERT_EQ(0.8, b.get_y());
+    ASSERT_EQ(0, b.get_z());
+    ASSERT_EQ(0, b.get_w());
 }
 TEST(ExampleTests, DotProduct){
     Tuple a = tuples::vector(1,2,3);

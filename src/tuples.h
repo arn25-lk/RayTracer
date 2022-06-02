@@ -8,14 +8,15 @@ protected:
 public:
     Tuple(double x, double y, double z, double w); 
     Tuple();
-    inline double get_x(){return x;}
-    inline double get_y(){return y;}
-    inline double get_z(){return z;}
-    inline double get_w(){return w;} // Read only access for w as it determines state
+    inline double get_x() const {return x;}
+    inline double get_y() const{return y;}
+    inline double get_z() const{return z;}
+    inline double get_w() const{return w;} // Read only access for w as it determines state
     inline void set_x(double x){this->x = x;}
     inline void set_y(double y){this->y = y;}
     inline void set_z(double z){this->z = z;}
     inline void set_w(double w){this->w = w;}
+    bool operator==(const Tuple& rhs);
     
     
 };
@@ -36,7 +37,7 @@ class Color {
 private: 
     double r, g, b;
 public:
-    Color(double r, double g, double b);
+    Color(double, double, double);
     Color();
     inline double red(){return r;}
     inline double green(){return g;}
@@ -44,7 +45,6 @@ public:
     inline void set_r(double r){this->r = r;}
     inline void set_g(double g){this->g = g;}
     inline void set_b(double b){this->b = b;}
-
     
 };
 
@@ -56,12 +56,13 @@ Tuple vector(double x, double y, double z);
 Tuple add(Tuple a, Tuple b);
 Tuple subtract(Tuple a, Tuple b);
 Tuple& negate(Tuple& a);
-Tuple& multiply(Tuple& a, double scale);
-Tuple& divide(Tuple& a, double scale);
-double magnitude(Tuple& a);
-Tuple& normalise(Tuple& a);
-double dot(Tuple a, Tuple b);
-Tuple cross(Tuple a, Tuple b);
+Tuple multiply(const Tuple& a, double scale);
+Tuple divide(const Tuple& a, double scale);
+double magnitude(const Tuple& a);
+Tuple normalise(const Tuple& a);
+double dot(Tuple a, Tuple b); //Change to reference
+Tuple cross(Tuple a, Tuple b); //Change to reference
+
 
 }
 namespace color{
