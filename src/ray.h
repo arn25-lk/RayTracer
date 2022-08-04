@@ -3,6 +3,7 @@
 #include <utility>
 #include <vector> 
 #include "tuples.h"
+#include <memory>
 
 class Ray
 {
@@ -21,13 +22,31 @@ class Ray
 
 namespace Shapes
 {
+   
+    class Shape;
+    struct Intersection{
+        double t;
+        Shape& object;
+        Intersection(double t, Shape& object);
+
+        
+    };
+    struct Intersections{
+        std::vector<std::unique_ptr<Intersection> > list;
+        std::unique_ptr<Intersection>& operator[](int i);
+        void add(Intersection& i);
+        int getCount();
+    };
+    std::unique_ptr<Intersection> hit(Intersections& it);
+
+    
     class Shape 
     {   
         protected:
             static inline unsigned int id = 0; 
             unsigned int current_id;
         public:
-            virtual std::pair< std::pair<double, double>, int> intersect(Ray ray) = 0;
+            virtual Intersections intersect(Ray ray) = 0;
             unsigned int getId();
     };
 
@@ -39,19 +58,13 @@ namespace Shapes
        
     public:
         Sphere();
-        std::pair< std::pair<double, double>, int>intersect(Ray ray);
+        Intersections intersect(Ray ray);
         
     };
 
-    struct intersection{
-        double t;
-        Shape& object;
-    };
-    struct intersections{
-        std::vector<intersection> list;
-        double operator[](int i);
-        
-    };
+    
+    
+
     
 }
 
