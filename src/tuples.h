@@ -16,7 +16,7 @@ public:
     inline void set_y(double y){this->y = y;}
     inline void set_z(double z){this->z = z;}
     inline void set_w(double w){this->w = w;}
-    bool operator==(const Tuple& rhs);
+    bool operator==(const Tuple& rhs) const;
     
     
 };
@@ -61,7 +61,9 @@ Tuple divide(const Tuple& a, double scale);
 double magnitude(const Tuple& a);
 Tuple normalise(const Tuple& a);
 double dot(Tuple a, Tuple b); //Change to reference
-Tuple cross(Tuple a, Tuple b); //Change to reference
+Tuple cross(Tuple a, Tuple b);
+Tuple reflect(Tuple, Tuple); //Change to reference
+
 
 
 }

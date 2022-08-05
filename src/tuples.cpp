@@ -1,6 +1,7 @@
 #include<iostream>
 #include "tuples.h"
-#include "math.h"
+#include <cmath>
+#include "matrix.h"
 
 Tuple::Tuple(double x, double y, double z, double w):
     x{x}, 
@@ -20,7 +21,7 @@ Tuple::Tuple():
 
 }
 
-const Tuple tuples::ZERO = Tuple{0,0,0,1};
+const Tuple tuples::ZERO = Tuple{0.0,0.0,0.0,1.0};
 
 Tuple tuples::point(double x, double y, double z)
 { 
@@ -114,11 +115,19 @@ Tuple tuples::cross(Tuple a, Tuple b){
     
     );   
 }
-bool Tuple::operator==(const Tuple& rhs)
-{
-    return this->x == rhs.x && this->y == rhs.y && this->z == rhs.z && this->w == rhs.w;
-}
 
+bool Tuple::operator==(const Tuple& rhs) const
+{
+    
+    return util::approximatelyEqual(this->x, rhs.x, 0.0001) && 
+    util::approximatelyEqual(this->y, rhs.y, 0.0001) &&
+    util::approximatelyEqual(this->z, rhs.z, 0.0001) && 
+    util::approximatelyEqual(this->w, rhs.w, 0.0001);
+}
+Tuple reflect(Tuple in, Tuple normal){
+    auto reflectedVector =  tuples::multiply(normal, 2 * tuples::dot(in, normal));
+    return tuples::subtract(in, reflectedVector); //in to normal
+}
 Color::Color(double r, double g, double b):
     r{r}, g{g}, b{b}
 {

@@ -4,8 +4,7 @@
 #include <cmath>
 #include "canvas.h"
 #include "tuples.h"
-#include "canvas.cpp"
-#include "tuples.cpp"
+
 
 static double arr[4][4] =
 {
@@ -15,7 +14,7 @@ static double arr[4][4] =
     {0,0,0,1}
 };
 
-Matrix IDENTITY_MATRIX = Matrix(arr); //Make a const matrix
+extern const Matrix IDENTITY_MATRIX = Matrix(arr); //Make a const matrix
 
 
 Matrix::Matrix(unsigned int nr_rows, unsigned int nr_cols, double value)
@@ -49,7 +48,7 @@ Matrix::Matrix(double arr[][4])
 
 
 
-Matrix Matrix::operator+(const Matrix& a)
+Matrix Matrix::operator+(const Matrix& a) const
 {   
     Matrix result{this->nr_rows, this->nr_cols, 0};
 
@@ -66,7 +65,7 @@ Matrix Matrix::operator+(const Matrix& a)
     
 }
 
-Matrix Matrix::operator-(const Matrix& b)
+Matrix Matrix::operator-(const Matrix& b) const
 {   
     Matrix result{this->nr_rows, this->nr_cols, 0};
 
@@ -82,7 +81,7 @@ Matrix Matrix::operator-(const Matrix& b)
     return result;
 }
 
-Matrix Matrix::operator*(const Matrix& b)
+Matrix Matrix::operator*(const Matrix& b) const
 {
     Matrix result{this->nr_rows, b.nr_cols};
     if(this->nr_cols != b.nr_rows){
@@ -102,7 +101,7 @@ Matrix Matrix::operator*(const Matrix& b)
 
 
 
-bool Matrix::operator==(const Matrix& a)
+bool Matrix::operator==(const Matrix& a) const
 {
     for(int i = 0; i < this->nr_rows; i++)
     {
@@ -117,7 +116,7 @@ bool Matrix::operator==(const Matrix& a)
     return true;
 }
 
-Matrix Matrix::operator/(const double a)
+Matrix Matrix::operator/(const double a) const
 {
     Matrix result{this->nr_rows, this->nr_cols};
 
@@ -130,7 +129,7 @@ Matrix Matrix::operator/(const double a)
     return result;
 }
 
-Tuple Matrix::operator*(Tuple& b)
+Tuple Matrix::operator*(const Tuple& b) const
 {
     if(this->nr_cols != 4 || this->nr_rows != 4){
         throw std::invalid_argument("Matrix Dimensions Don't Match");
@@ -148,7 +147,7 @@ Tuple Matrix::operator*(Tuple& b)
     return result;
 
 }
-Matrix Matrix::transpose()
+Matrix Matrix::transpose() const
 {
     Matrix result{this->nr_cols, this->nr_rows};
     for (int i = 0; i < this->nr_rows; i++)

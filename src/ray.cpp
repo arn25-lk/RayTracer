@@ -1,10 +1,14 @@
 #include "ray.h"
 #include "tuples.h"
+#include "matrix.h"
+#include "canvas.h"
 #include <utility>
 #include <cmath>
 #include <algorithm>
 #include <float.h>
 #include <memory>
+#include <iostream>
+
 
 Ray::Ray(Tuple origin, Tuple direction)
 {
@@ -24,6 +28,13 @@ Tuple Ray::getDirection()
     return this->direction;
 }
 
+Ray Ray::transform(Matrix mat){
+    auto n_origin = mat * this->origin;
+    auto n_direction = mat * this->direction;
+    Ray resultantRay{n_origin, n_direction};
+    return resultantRay;
+}
+
 
 namespace Shapes 
 {
@@ -31,9 +42,11 @@ namespace Shapes
     {
         Intersections collisions;
         int count = 0;
-        Tuple origin = ray.getOrigin();
-        Tuple sphereToRay = tuples::subtract(ray.getOrigin(), tuples::ZERO);
-        Tuple direction = ray.getDirection();
+        auto invertedTransformation = (this->getTransform()).inverse();
+        auto rayN = ray.transform(invertedTransformation);
+        Tuple origin = rayN.getOrigin();
+        Tuple sphereToRay = tuples::subtract(rayN.getOrigin(), tuples::ZERO);
+        Tuple direction = rayN.getDirection();
         double a = tuples::dot(direction, direction);
         double b = 2 * tuples::dot(direction, sphereToRay);
         double c = tuples::dot(sphereToRay, sphereToRay) - 1;
@@ -61,15 +74,33 @@ namespace Shapes
 
         return collisions;
     }
+    unsigned int Shape::id = 0;
     Sphere::Sphere()
     {
-        current_id = id;
-        id++;
+        this->current_id = this->id;
+        (this->id)++;
     }
     unsigned int Shape::getId()
     {
-        return current_id;
+        return this->current_id;
     }
+    Matrix Shape::getTransform()
+    {
+        return this->transform;
+    }
+    void Shape::setTransform(Matrix c)
+    {
+        this->transform = c;
+    }
+    //Input points only
+    Tuple Sphere::normalAt(Tuple world_point){
+        auto invTransform = (this->getTransform()).inverse();
+        auto object_point = invTransform * world_point;
+        auto object_normal = tuples::subtract(object_point, tuples::point(0,0,0));
+        auto world_normal = invTransform.transpose() * object_normal;
+        world_normal.set_w(0);
+        return tuples::normalise(world_normal);
+    } //fix
     Intersection::Intersection(double t, Shape& object) : object(object), t(t)
     {
 
@@ -108,7 +139,34 @@ namespace Shapes
         }else{
             return nullptr;
         }
-        
-
     }
+
 }
+
+/*int main(){
+    auto ray_origin = tuples::point(0,0,-5);
+    int wall_z = 10;
+    double wall_size = 7;
+    unsigned int canvas_pixels = 100;
+    double pixel_size = wall_size / canvas_pixels;
+    double half = wall_size / 2;
+    Canvas can{canvas_pixels, canvas_pixels};
+    Color red{1,0,0};
+    Shapes::Sphere sphere{};
+    auto transform = util::scaling(1,0.5,1) * util::scaling(0.5,1,1) * util::shearing(1,0,0,0,0,0);
+    sphere.setTransform(transform);
+    for(int y = 0; y < canvas_pixels; y++){
+        auto world_y = half - pixel_size * y;
+        for(int x = 0; x < canvas_pixels; x++){
+            auto world_x = -half + pixel_size * x;
+            auto position = tuples::point(world_x, world_y, wall_z);
+            Ray r{ray_origin, tuples::normalise(tuples::subtract(position, ray_origin))};
+            auto xs = sphere.intersect(r);
+            if(hit(xs)){
+                can.write_pixel(x, y, red);
+            }
+        }
+    }
+    if(!(can.canvas_to_ppm())) std::cout << "Print Successful" << std::endl;
+    return 0;
+}*/

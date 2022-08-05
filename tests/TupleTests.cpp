@@ -126,3 +126,9 @@ TEST(ExampleTests, ColorMult){
     ASSERT_EQ(5.1, c.blue());
     
 }
+TEST(TupleFeature, Reflect){
+    auto v = tuples::vector(1,-1,0);
+    auto n = tuples::vector(0, 1, 0);
+    auto r = tuples::reflect(v, n);
+    ASSERT_EQ(r, tuples::vector(1,1,0));
+}

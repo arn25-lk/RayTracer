@@ -1,6 +1,21 @@
 #include "../src/ray.h"
 #include<gtest/gtest.h>
+#include<cmath>
 
+TEST(SphereInit, SphereInit1){
+    Shapes::Sphere s1{};
+    Shapes::Sphere s2{};
+    Shapes::Sphere s3{};
+    Shapes::Sphere s4{};
+    Shapes::Sphere s5{};
+
+    ASSERT_EQ(s1.getId(), 0);
+    ASSERT_EQ(s2.getId(), 1);
+    ASSERT_EQ(s3.getId(), 2);
+    ASSERT_EQ(s4.getId(), 3);
+    ASSERT_EQ(s5.getId(), 4);
+
+}
 
 TEST(RayInitTests, RayInit)
 {
@@ -25,6 +40,7 @@ TEST(RayInitTests, RayInit2)
         ASSERT_TRUE(ray.position(2.5) == tuples::point(4.5,3,4));
 
 }
+
 TEST(SphereTest, SphereIntersect1)
 {
     Tuple origin = tuples::point(0, 0, -5);
@@ -172,4 +188,85 @@ TEST(HitTest, Intersect4){
     intersections.add(i4);
     auto i = hit(intersections);
     ASSERT_EQ(i4.t, i->t);
+}
+TEST(TransformationTest, RayTranslate1){
+    Tuple origin = tuples::point(1, 2, 3);
+    Tuple direction = tuples::vector(1, 0, 0);
+    Ray ray{origin, direction};
+    auto translate = util::translation(3,4,5);
+    auto resultantRay = ray.transform(translate);
+    auto pt = tuples::point(4,6,8);
+    EXPECT_EQ(resultantRay.getOrigin(), pt);
+    EXPECT_EQ(resultantRay.getDirection(), direction);
+}
+TEST(TransformationTest, RayScale){
+    Tuple origin = tuples::point(1, 2, 3);
+    Tuple direction = tuples::vector(0, 1, 0);
+    Ray ray{origin, direction};
+    auto translate = util::scaling(2,3,4);
+    auto resultantRay = ray.transform(translate);
+    auto pt = tuples::point(2,6,12);
+    auto vt = tuples::vector(0,3,0);
+    EXPECT_EQ(resultantRay.getOrigin(), pt);
+    EXPECT_EQ(resultantRay.getDirection(), vt);
+}
+TEST(SphereProperties, RTransform1){
+    Shapes::Sphere s1{};
+    auto m = s1.getTransform();
+    EXPECT_TRUE(m == IDENTITY_MATRIX);
+}
+
+TEST(SphereProperties, RTransform2){
+    Shapes::Sphere s1{};
+    auto t = util::translation(2,3,4);
+    s1.setTransform(t);
+    auto m = s1.getTransform();
+    EXPECT_TRUE(m == t);
+}
+
+TEST(SphereProperties, IntersectingScaledRayWithSphere){
+    Ray r {tuples::point(0,0,-5), tuples::vector(0,0,1)};
+    Shapes::Sphere s{};
+    s.setTransform(util::scaling(2,2,2));
+    auto xs = s.intersect(r);
+    ASSERT_EQ(xs.getCount(), 2);
+    ASSERT_EQ(xs[0]->t, 3);
+    ASSERT_EQ(xs[1]->t, 7);
+}
+TEST(SphereProperties, ComputingNormal1){
+    Shapes::Sphere s{};
+    auto n = s.normalAt(tuples::point(1,0,0));
+    ASSERT_EQ(n, tuples::vector(1,0,0));
+}
+
+TEST(SphereProperties, ComputingNormal2){
+    Shapes::Sphere s{};
+    auto n = s.normalAt(tuples::point(0,1,0));
+    ASSERT_EQ(n, tuples::vector(0,1,0));
+}
+TEST(SphereProperties, ComputingNormal3){
+    Shapes::Sphere s{};
+    auto n = s.normalAt(tuples::point(0,0,1));
+    ASSERT_EQ(n, tuples::vector(0,0,1));
+}
+TEST(SphereProperties, ComputingNormal4){
+    Shapes::Sphere s{};
+    EXPECT_TRUE(s.getTransform() == IDENTITY_MATRIX);
+    auto n = s.normalAt(tuples::point(sqrt(3)/3,sqrt(3)/3,sqrt(3)/3));
+    ASSERT_EQ(n, tuples::vector(sqrt(3)/3,sqrt(3)/3,sqrt(3)/3));
+}
+
+TEST(SphereProperties, ComputingNormalTranslatedSphere){
+    Shapes::Sphere s{};
+    s.setTransform(util::translation(0,1,0));
+    auto n = s.normalAt(tuples::point(0,1.70711,-0.70711));
+    auto resVec = tuples::vector(0,0.70711,-0.70711);
+    ASSERT_EQ(n, resVec);
+}
+TEST(SphereProperties, ComputingNormalTranslatedSphere2){
+    Shapes::Sphere s{};
+    auto transform = util::scaling(1,0.5,1) * util::rotationZ(M_PI/5);
+    s.setTransform(transform);
+    auto n = s.normalAt(tuples::point(0,sqrt(2)/2,-sqrt(2)/2));
+    ASSERT_EQ(n, tuples::vector(0, 0.97014, -0.24254));
 }

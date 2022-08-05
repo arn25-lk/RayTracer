@@ -3,6 +3,7 @@
 #include <utility>
 #include <vector> 
 #include "tuples.h"
+#include "matrix.h"
 #include <memory>
 
 class Ray
@@ -15,14 +16,14 @@ class Ray
         Tuple getOrigin();
         Tuple getDirection();
         Tuple position(double);
-    
+        Ray transform(Matrix);
 
 };
 
 
 namespace Shapes
 {
-   
+    
     class Shape;
     struct Intersection{
         double t;
@@ -38,16 +39,21 @@ namespace Shapes
         int getCount();
     };
     std::unique_ptr<Intersection> hit(Intersections& it);
-
+    
     
     class Shape 
     {   
         protected:
-            static inline unsigned int id = 0; 
+            static unsigned int id;
             unsigned int current_id;
+            Matrix transform = IDENTITY_MATRIX;
         public:
             virtual Intersections intersect(Ray ray) = 0;
+            virtual Tuple normalAt(Tuple) = 0;
             unsigned int getId();
+            Matrix getTransform();
+            void setTransform(Matrix);
+            
     };
 
     
@@ -55,10 +61,11 @@ namespace Shapes
 
     class Sphere : public Shape
     {
-       
     public:
         Sphere();
         Intersections intersect(Ray ray);
+        Tuple normalAt(Tuple);
+
         
     };
 
