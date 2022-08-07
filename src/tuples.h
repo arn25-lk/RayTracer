@@ -17,6 +17,11 @@ public:
     inline void set_z(double z){this->z = z;}
     inline void set_w(double w){this->w = w;}
     bool operator==(const Tuple& rhs) const;
+    Tuple operator-() const;
+    Tuple operator-(const Tuple& rhs) const;
+    Tuple operator+(const Tuple& rhs) const;
+    Tuple operator*(const double val) const;
+    Tuple operator/(const double val) const;
     
     
 };
@@ -39,39 +44,42 @@ private:
 public:
     Color(double, double, double);
     Color();
-    inline double red(){return r;}
-    inline double green(){return g;}
-    inline double blue(){return b;}
+    inline double red() const{return r;}
+    inline double green()const {return g;}
+    inline double blue() const{return b;}
     inline void set_r(double r){this->r = r;}
     inline void set_g(double g){this->g = g;}
     inline void set_b(double b){this->b = b;}
-    
+    Color operator/(const double val) const;
+    Color operator/(const Color b) const;
+    Color operator*(const double val) const;
+    Color operator*(const Color b) const;
+    Color operator+(const double val) const;
+    Color operator+(const Color b) const;
+    Color operator-(const double val) const;
+    Color operator-(const Color b) const;
+    bool operator==(const Color& rhs) const;
 };
 
 namespace tuples{
 
-extern const Tuple ZERO;
-Tuple point(double x, double y, double z);
-Tuple vector(double x, double y, double z);
-Tuple add(Tuple a, Tuple b);
-Tuple subtract(Tuple a, Tuple b);
-Tuple& negate(Tuple& a);
-Tuple multiply(const Tuple& a, double scale);
-Tuple divide(const Tuple& a, double scale);
-double magnitude(const Tuple& a);
-Tuple normalise(const Tuple& a);
-double dot(Tuple a, Tuple b); //Change to reference
-Tuple cross(Tuple a, Tuple b);
-Tuple reflect(Tuple, Tuple); //Change to reference
+    extern const Tuple ZERO;
+    Tuple point(double x, double y, double z);
+    Tuple vector(double x, double y, double z);
+    Tuple add(Tuple a, Tuple b);
+    Tuple subtract(Tuple a, Tuple b);
+    Tuple negate(Tuple a);
+    Tuple multiply(const Tuple& a, double scale);
+    Tuple divide(const Tuple& a, double scale);
+    double magnitude(const Tuple& a);
+    Tuple normalise(const Tuple& a);
+    double dot(Tuple a, Tuple b); //Change to reference
+    Tuple cross(Tuple a, Tuple b);
+    Tuple reflect(Tuple, Tuple); //Change to reference
 
 
 
 }
-namespace color{
-Color c_add(Color a, Color b);
-Color c_sub(Color a, Color b);
-Color& c_mult(Color& a, double scale);
-Color h_prod(Color a, Color b);
-}
+
 
 #endif

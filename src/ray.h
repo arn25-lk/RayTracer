@@ -5,6 +5,7 @@
 #include "tuples.h"
 #include "matrix.h"
 #include <memory>
+#include "reflection.h"
 
 class Ray
 {
@@ -46,8 +47,10 @@ namespace Shapes
         protected:
             static unsigned int id;
             unsigned int current_id;
-            Matrix transform = IDENTITY_MATRIX;
+            Matrix transform;// = IDENTITY_MATRIX;
         public:
+            Shape();
+            Material material;
             virtual Intersections intersect(Ray ray) = 0;
             virtual Tuple normalAt(Tuple) = 0;
             unsigned int getId();

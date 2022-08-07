@@ -32,6 +32,48 @@ Tuple tuples::vector(double x, double y, double z)
 {
     return Tuple{x, y, z, 0.0};
 }
+Tuple Tuple::operator-() const
+{
+    Tuple a{-this->get_x(), -this->get_y(), -this->get_z(), -this->get_w()};
+    return a;
+}
+Tuple Tuple::operator-(const Tuple& b) const
+{
+    double x_1 = this->get_x() - b.get_x();
+    double y_1 = this->get_y() - b.get_y();
+    double z_1 = this->get_z() - b.get_z();
+    double w_1 = this->get_w() - b.get_w();
+    if(w_1 == -1){
+        throw std::invalid_argument("Subtracting a point from a vector");
+    }
+    return Tuple(x_1, y_1, z_1, w_1);
+}
+Tuple Tuple::operator+(const Tuple& b) const
+{
+    double x_1 = this->get_x() + b.get_x();
+    double y_1 = this->get_y() + b.get_y();
+    double z_1 = this->get_z() + b.get_z();
+    double w_1 = this->get_w() + b.get_w();
+    if(w_1 == 2){
+        throw std::invalid_argument("Adding two points");
+    }
+    return Tuple(x_1, y_1, z_1, w_1);
+}
+Tuple Tuple::operator*(const double scale) const
+{
+    Tuple result{this->get_x() * scale, this->get_y() * scale, this->get_z() * scale, this->get_w() * scale};
+    return result;
+}
+Tuple Tuple::operator/(const double scale) const
+{
+    if(scale == 0)
+    {
+        throw std::invalid_argument("Dividing by Zero");
+    }
+    Tuple result{this->get_x() / scale, this->get_y() / scale, this->get_z() / scale, this->get_w() / scale};
+
+    return result;
+}
 
 Tuple tuples::add(Tuple a, Tuple b)
 {
@@ -59,14 +101,11 @@ Tuple tuples::subtract(Tuple a, Tuple b)
     return Tuple(x_1, y_1, z_1, w_1);
 
 }
-Tuple& tuples::negate(Tuple& a)
+Tuple tuples::negate(Tuple a)
 {
 
-    a.set_x(-a.get_x());
-    a.set_y(-a.get_y());
-    a.set_z(-a.get_z());
-    a.set_w(-a.get_w());
-    return a;
+    Tuple t{-a.get_x(), -a.get_y(), -a.get_z(), -a.get_w()};
+    return t;
 
 }
 
@@ -107,7 +146,8 @@ double tuples::dot(Tuple a, Tuple b)
     }
     return (a.get_x()*b.get_x() +  a.get_y()*b.get_y() + a.get_z()*b.get_z() + a.get_w()*b.get_w());
 }
-Tuple tuples::cross(Tuple a, Tuple b){
+Tuple tuples::cross(Tuple a, Tuple b)
+{
     return vector(
     a.get_y()*b.get_z() - a.get_z()*b.get_y(),
     a.get_z() * b.get_x() - a.get_x() * b.get_z(),
@@ -124,8 +164,10 @@ bool Tuple::operator==(const Tuple& rhs) const
     util::approximatelyEqual(this->z, rhs.z, 0.0001) && 
     util::approximatelyEqual(this->w, rhs.w, 0.0001);
 }
-Tuple reflect(Tuple in, Tuple normal){
-    auto reflectedVector =  tuples::multiply(normal, 2 * tuples::dot(in, normal));
+Tuple tuples::reflect(Tuple in, Tuple normal)
+{
+    // reflectedVector = in - normal * 2 * dot(in, normal)
+    auto reflectedVector = tuples::multiply(normal, 2 * tuples::dot(in, normal));
     return tuples::subtract(in, reflectedVector); //in to normal
 }
 Color::Color(double r, double g, double b):
@@ -141,7 +183,7 @@ Color::Color():
 
 }
     
-Color color::c_add(Color a, Color b)
+/*Color color::c_add(Color a, Color b)
 {
     return Color(a.red()+b.red(), a.green()+b.green(), a.blue()+b.blue());
 }
@@ -161,8 +203,49 @@ Color color::h_prod(Color a, Color b)
 {
     return Color(a.red()*b.red(), a.green()*b.green(), a.blue()*b.blue());
 }
+*/
+Color Color::operator/(const double val) const
+{
+    Color c1{this->red() / val, this->green() / val, this->blue() / val};
+    return c1;
+}
+Color Color::operator*(const double val) const
+{
+    Color c1{this->red() * val, this->green() * val, this->blue() * val};
+    return c1;
+}
+Color Color::operator*(const Color b) const
+{
+    Color c1 {this->red() * b.red(), this->green() * b.green(), this->blue() * b.blue()};
+    return c1;
+}
+Color Color::operator+(const double val) const
+{
+    Color c1{this->red() + val, this->green() + val, this->blue() + val};
+    return c1;
+}
 
+Color Color::operator+(const Color b) const
+{
+    Color c1{this->red() + b.red(), this->green() + b.green(), this->blue() + b.blue()};
+    return c1;
+}
+Color Color::operator-(const double val) const
+{
+    Color c1{this->red() - val, this->green() - val, this->blue() - val};
+    return c1;
+}
+Color Color::operator-(const Color b) const
+{
+    Color c1{this->red() - b.red(), this->green() - b.green(), this->blue() - b.blue()};
+    return c1;
+}
 
+bool Color::operator==(const Color& rhs) const
+{
+    
+    return rhs.red() == this->red() && rhs.green() == this->green() && rhs.blue() == this->blue();
+}
 /*
 //DEMO FOR TESTNG TUPLES CLASS
 

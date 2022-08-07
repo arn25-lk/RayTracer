@@ -17,7 +17,7 @@ Ray::Ray(Tuple origin, Tuple direction)
 }
 Tuple Ray::position(double t)
 {
-    return tuples::add(this->origin, tuples::multiply(this->direction, t));
+    return tuples::add(this->origin, this->direction * t);
 }
 Tuple Ray::getOrigin()
 {
@@ -38,6 +38,9 @@ Ray Ray::transform(Matrix mat){
 
 namespace Shapes 
 {
+    Shape::Shape() : material(Material()), transform(IDENTITY_MATRIX){
+
+    }
     Intersections Sphere::intersect(Ray ray)
     {
         Intersections collisions;
@@ -45,7 +48,7 @@ namespace Shapes
         auto invertedTransformation = (this->getTransform()).inverse();
         auto rayN = ray.transform(invertedTransformation);
         Tuple origin = rayN.getOrigin();
-        Tuple sphereToRay = tuples::subtract(rayN.getOrigin(), tuples::ZERO);
+        Tuple sphereToRay = rayN.getOrigin() - tuples::ZERO;
         Tuple direction = rayN.getDirection();
         double a = tuples::dot(direction, direction);
         double b = 2 * tuples::dot(direction, sphereToRay);
@@ -96,7 +99,7 @@ namespace Shapes
     Tuple Sphere::normalAt(Tuple world_point){
         auto invTransform = (this->getTransform()).inverse();
         auto object_point = invTransform * world_point;
-        auto object_normal = tuples::subtract(object_point, tuples::point(0,0,0));
+        auto object_normal = object_point - tuples::point(0,0,0);
         auto world_normal = invTransform.transpose() * object_normal;
         world_normal.set_w(0);
         return tuples::normalise(world_normal);
