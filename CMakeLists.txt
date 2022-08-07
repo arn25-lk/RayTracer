@@ -19,6 +19,7 @@ set(HEADERS
     src/canvas.h
     src/matrix.h
     src/ray.h
+    src/reflection.h
 )
 
 set(SOURCES 
@@ -26,6 +27,7 @@ set(SOURCES
     src/canvas.cpp
     src/matrix.cpp
     src/ray.cpp
+    src/reflection.cpp
     
 )
 

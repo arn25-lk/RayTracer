@@ -1,6 +1,7 @@
 #include"../src/tuples.h"
 #include<gtest/gtest.h>
 #include<iostream>
+#include<cmath>
 
 TEST(ExampleTests, TupleDefinition){
     Tuple a{4.3, -4.2, 3.1, 1.0};
@@ -109,26 +110,36 @@ TEST(ExampleTests, ColorTest){
 TEST(ExampleTests, ColorAdd){
     Color c = Color{-0.5,0.4,1.7};
     Color k = Color{-0.5,0.4,1.7};
-    Color l = color::c_add(c, k);
+    Color l = c + k;
     ASSERT_EQ(-1, l.red());
     ASSERT_EQ(0.8, l.green());
     ASSERT_EQ(3.4, l.blue());
 }
 TEST(ExampleTests, ColorMult){
-    Color c = Color{-0.5,1.3,1.7};
+    Color c{-0.5,1.3,1.7};
     
-    Color k = color::c_mult(c, 3);
-    ASSERT_EQ(-1.5, c.red());
+    Color k = c * 3;
+    ASSERT_EQ(-1.5, k.red());
 
-    std::cout<<c.green()<<std::endl;
-    int eq = c.green() > 3.9; //Error due to double precision 
+    std::cout<<k.green()<<std::endl;
+    int eq = k.green() > 3.9; //Error due to double precision 
     std::cout<<eq<<std::endl;
-    ASSERT_EQ(5.1, c.blue());
+    ASSERT_EQ(5.1, k.blue());
     
 }
-TEST(TupleFeature, Reflect){
+TEST(TupleFeature, Reflect1){
     auto v = tuples::vector(1,-1,0);
     auto n = tuples::vector(0, 1, 0);
     auto r = tuples::reflect(v, n);
     ASSERT_EQ(r, tuples::vector(1,1,0));
+}
+
+TEST(TupleFeature, Reflect2){
+    auto v = tuples::vector(0,-1,0);
+    auto n = tuples::vector(sqrt(2)/2, sqrt(2)/2, 0);
+    auto r = tuples::reflect(v, n);
+    ASSERT_EQ((int)r.get_x() , 1);
+    ASSERT_EQ((int)r.get_y() , 0);
+    ASSERT_EQ((int)r.get_z() , 0);
+    ASSERT_EQ((int)r.get_w() , 0);
 }
