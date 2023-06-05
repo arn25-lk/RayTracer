@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Site BuildName="(empty)"
+	BuildStamp="20220805-1335-Experimental"
+	Name="(empty)"
+	Generator="ctest-3.22.1"
+	CompilerName=""
+	CompilerVersion=""
+	OSName="macOS"
+	Hostname="Arnavs-MacBook-Air.local"
+	OSRelease="12.1"
+	OSVersion="21C52"
+	OSPlatform="arm64"
+	Is64Bits="1"
+	VendorString="IBM"
+	VendorID="IBM"
+	FamilyID="16777228"
+	ModelID="2"
+	ProcessorCacheSize="131072"
+	NumberOfLogicalCPU="8"
+	NumberOfPhysicalCPU="8"
+	TotalVirtualMemory="2048"
+	TotalPhysicalMemory="16384"
+	LogicalProcessorsPerPhysical="8"
+	ProcessorClockFrequency="0"
+	>
+	<Testing>
+		<StartDateTime>Aug 05 19:05 IST</StartDateTime>
+		<StartTestTime>1659706502</StartTestTime>
+		<TestList>
+			<Test>./tests/tuple_test</Test>
+			<Test>./tests/canvas_test</Test>
+			<Test>./tests/matrix_test</Test>
+			<Test>./tests/ray_test</Test>
+		</TestList>
+		<Test Status="notrun">
+			<Name>tuple_test</Name>
+			<Path>./tests</Path>
+			<FullName>./tests/tuple_test</FullName>
+			<FullCommandLine></FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Unable to find executable</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value></Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value></Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>Unable to find executable: /Users/arnav25/Desktop/3D_Renderer/build/tests/tuple_test</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="notrun">
+			<Name>canvas_test</Name>
+			<Path>./tests</Path>
+			<FullName>./tests/canvas_test</FullName>
+			<FullCommandLine></FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Unable to find executable</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value></Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value></Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>Unable to find executable: /Users/arnav25/Desktop/3D_Renderer/build/tests/canvas_test</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="notrun">
+			<Name>matrix_test</Name>
+			<Path>./tests</Path>
+			<FullName>./tests/matrix_test</FullName>
+			<FullCommandLine></FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Unable to find executable</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value></Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value></Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>Unable to find executable: /Users/arnav25/Desktop/3D_Renderer/build/tests/matrix_test</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<Test Status="notrun">
+			<Name>ray_test</Name>
+			<Path>./tests</Path>
+			<FullName>./tests/ray_test</FullName>
+			<FullCommandLine></FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Unable to find executable</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value></Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Environment">
+					<Value></Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value>Unable to find executable: /Users/arnav25/Desktop/3D_Renderer/build/tests/ray_test</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<EndDateTime>Aug 05 19:05 IST</EndDateTime>
+		<EndTestTime>1659706502</EndTestTime>
+		<ElapsedMinutes>0</ElapsedMinutes>
+	</Testing>
+</Site>

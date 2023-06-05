@@ -172,6 +172,48 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+tests/CMakeFiles/reflection_test.dir/rule:
+	cd /Users/arnav25/Desktop/3D_Renderer/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/reflection_test.dir/rule
+.PHONY : tests/CMakeFiles/reflection_test.dir/rule
+
+# Convenience name for target.
+reflection_test: tests/CMakeFiles/reflection_test.dir/rule
+.PHONY : reflection_test
+
+# fast build rule for target.
+reflection_test/fast:
+	cd /Users/arnav25/Desktop/3D_Renderer/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/reflection_test.dir/build.make tests/CMakeFiles/reflection_test.dir/build
+.PHONY : reflection_test/fast
+
+# Convenience name for target.
+tests/CMakeFiles/ray_test.dir/rule:
+	cd /Users/arnav25/Desktop/3D_Renderer/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/ray_test.dir/rule
+.PHONY : tests/CMakeFiles/ray_test.dir/rule
+
+# Convenience name for target.
+ray_test: tests/CMakeFiles/ray_test.dir/rule
+.PHONY : ray_test
+
+# fast build rule for target.
+ray_test/fast:
+	cd /Users/arnav25/Desktop/3D_Renderer/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/ray_test.dir/build.make tests/CMakeFiles/ray_test.dir/build
+.PHONY : ray_test/fast
+
+# Convenience name for target.
+tests/CMakeFiles/matrix_test.dir/rule:
+	cd /Users/arnav25/Desktop/3D_Renderer/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/matrix_test.dir/rule
+.PHONY : tests/CMakeFiles/matrix_test.dir/rule
+
+# Convenience name for target.
+matrix_test: tests/CMakeFiles/matrix_test.dir/rule
+.PHONY : matrix_test
+
+# fast build rule for target.
+matrix_test/fast:
+	cd /Users/arnav25/Desktop/3D_Renderer/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/matrix_test.dir/build.make tests/CMakeFiles/matrix_test.dir/build
+.PHONY : matrix_test/fast
+
+# Convenience name for target.
 tests/CMakeFiles/canvas_test.dir/rule:
 	cd /Users/arnav25/Desktop/3D_Renderer/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/canvas_test.dir/rule
 .PHONY : tests/CMakeFiles/canvas_test.dir/rule
@@ -223,6 +265,78 @@ CanvasTests.cpp.s:
 	cd /Users/arnav25/Desktop/3D_Renderer/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/canvas_test.dir/build.make tests/CMakeFiles/canvas_test.dir/CanvasTests.cpp.s
 .PHONY : CanvasTests.cpp.s
 
+MatrixTests.o: MatrixTests.cpp.o
+.PHONY : MatrixTests.o
+
+# target to build an object file
+MatrixTests.cpp.o:
+	cd /Users/arnav25/Desktop/3D_Renderer/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/matrix_test.dir/build.make tests/CMakeFiles/matrix_test.dir/MatrixTests.cpp.o
+.PHONY : MatrixTests.cpp.o
+
+MatrixTests.i: MatrixTests.cpp.i
+.PHONY : MatrixTests.i
+
+# target to preprocess a source file
+MatrixTests.cpp.i:
+	cd /Users/arnav25/Desktop/3D_Renderer/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/matrix_test.dir/build.make tests/CMakeFiles/matrix_test.dir/MatrixTests.cpp.i
+.PHONY : MatrixTests.cpp.i
+
+MatrixTests.s: MatrixTests.cpp.s
+.PHONY : MatrixTests.s
+
+# target to generate assembly for a file
+MatrixTests.cpp.s:
+	cd /Users/arnav25/Desktop/3D_Renderer/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/matrix_test.dir/build.make tests/CMakeFiles/matrix_test.dir/MatrixTests.cpp.s
+.PHONY : MatrixTests.cpp.s
+
+RaysTests.o: RaysTests.cpp.o
+.PHONY : RaysTests.o
+
+# target to build an object file
+RaysTests.cpp.o:
+	cd /Users/arnav25/Desktop/3D_Renderer/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/ray_test.dir/build.make tests/CMakeFiles/ray_test.dir/RaysTests.cpp.o
+.PHONY : RaysTests.cpp.o
+
+RaysTests.i: RaysTests.cpp.i
+.PHONY : RaysTests.i
+
+# target to preprocess a source file
+RaysTests.cpp.i:
+	cd /Users/arnav25/Desktop/3D_Renderer/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/ray_test.dir/build.make tests/CMakeFiles/ray_test.dir/RaysTests.cpp.i
+.PHONY : RaysTests.cpp.i
+
+RaysTests.s: RaysTests.cpp.s
+.PHONY : RaysTests.s
+
+# target to generate assembly for a file
+RaysTests.cpp.s:
+	cd /Users/arnav25/Desktop/3D_Renderer/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/ray_test.dir/build.make tests/CMakeFiles/ray_test.dir/RaysTests.cpp.s
+.PHONY : RaysTests.cpp.s
+
+ReflectionTests.o: ReflectionTests.cpp.o
+.PHONY : ReflectionTests.o
+
+# target to build an object file
+ReflectionTests.cpp.o:
+	cd /Users/arnav25/Desktop/3D_Renderer/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/reflection_test.dir/build.make tests/CMakeFiles/reflection_test.dir/ReflectionTests.cpp.o
+.PHONY : ReflectionTests.cpp.o
+
+ReflectionTests.i: ReflectionTests.cpp.i
+.PHONY : ReflectionTests.i
+
+# target to preprocess a source file
+ReflectionTests.cpp.i:
+	cd /Users/arnav25/Desktop/3D_Renderer/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/reflection_test.dir/build.make tests/CMakeFiles/reflection_test.dir/ReflectionTests.cpp.i
+.PHONY : ReflectionTests.cpp.i
+
+ReflectionTests.s: ReflectionTests.cpp.s
+.PHONY : ReflectionTests.s
+
+# target to generate assembly for a file
+ReflectionTests.cpp.s:
+	cd /Users/arnav25/Desktop/3D_Renderer/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/reflection_test.dir/build.make tests/CMakeFiles/reflection_test.dir/ReflectionTests.cpp.s
+.PHONY : ReflectionTests.cpp.s
+
 TupleTests.o: TupleTests.cpp.o
 .PHONY : TupleTests.o
 
@@ -261,10 +375,22 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... canvas_test"
+	@echo "... matrix_test"
+	@echo "... ray_test"
+	@echo "... reflection_test"
 	@echo "... tuple_test"
 	@echo "... CanvasTests.o"
 	@echo "... CanvasTests.i"
 	@echo "... CanvasTests.s"
+	@echo "... MatrixTests.o"
+	@echo "... MatrixTests.i"
+	@echo "... MatrixTests.s"
+	@echo "... RaysTests.o"
+	@echo "... RaysTests.i"
+	@echo "... RaysTests.s"
+	@echo "... ReflectionTests.o"
+	@echo "... ReflectionTests.i"
+	@echo "... ReflectionTests.s"
 	@echo "... TupleTests.o"
 	@echo "... TupleTests.i"
 	@echo "... TupleTests.s"

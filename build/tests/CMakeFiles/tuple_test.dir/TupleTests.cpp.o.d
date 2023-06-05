@@ -285,4 +285,7 @@ tests/CMakeFiles/tuple_test.dir/TupleTests.cpp.o: \
   /Users/arnav25/Desktop/3D_Renderer/googletest/googletest/include/gtest/gtest-test-part.h \
   /Users/arnav25/Desktop/3D_Renderer/googletest/googletest/include/gtest/gtest_prod.h \
   /Users/arnav25/Desktop/3D_Renderer/googletest/googletest/include/gtest/gtest-typed-test.h \
-  /Users/arnav25/Desktop/3D_Renderer/googletest/googletest/include/gtest/gtest_pred_impl.h
+  /Users/arnav25/Desktop/3D_Renderer/googletest/googletest/include/gtest/gtest_pred_impl.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX12.1.sdk/usr/include/c++/v1/cmath \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX12.1.sdk/usr/include/c++/v1/math.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX12.1.sdk/usr/include/math.h

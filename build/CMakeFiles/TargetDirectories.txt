@@ -31,6 +31,9 @@
 /Users/arnav25/Desktop/3D_Renderer/build/googletest/googletest/CMakeFiles/install.dir
 /Users/arnav25/Desktop/3D_Renderer/build/googletest/googletest/CMakeFiles/install/local.dir
 /Users/arnav25/Desktop/3D_Renderer/build/googletest/googletest/CMakeFiles/install/strip.dir
+/Users/arnav25/Desktop/3D_Renderer/build/tests/CMakeFiles/reflection_test.dir
+/Users/arnav25/Desktop/3D_Renderer/build/tests/CMakeFiles/ray_test.dir
+/Users/arnav25/Desktop/3D_Renderer/build/tests/CMakeFiles/matrix_test.dir
 /Users/arnav25/Desktop/3D_Renderer/build/tests/CMakeFiles/canvas_test.dir
 /Users/arnav25/Desktop/3D_Renderer/build/tests/CMakeFiles/tuple_test.dir
 /Users/arnav25/Desktop/3D_Renderer/build/tests/CMakeFiles/test.dir

@@ -97,19 +97,67 @@ CMakeFiles/Renderer.dir/src/canvas.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Renderer.dir/src/canvas.cpp.s"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/arnav25/Desktop/3D_Renderer/src/canvas.cpp -o CMakeFiles/Renderer.dir/src/canvas.cpp.s
 
+CMakeFiles/Renderer.dir/src/matrix.cpp.o: CMakeFiles/Renderer.dir/flags.make
+CMakeFiles/Renderer.dir/src/matrix.cpp.o: ../src/matrix.cpp
+CMakeFiles/Renderer.dir/src/matrix.cpp.o: CMakeFiles/Renderer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/arnav25/Desktop/3D_Renderer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Renderer.dir/src/matrix.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Renderer.dir/src/matrix.cpp.o -MF CMakeFiles/Renderer.dir/src/matrix.cpp.o.d -o CMakeFiles/Renderer.dir/src/matrix.cpp.o -c /Users/arnav25/Desktop/3D_Renderer/src/matrix.cpp
+
+CMakeFiles/Renderer.dir/src/matrix.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Renderer.dir/src/matrix.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/arnav25/Desktop/3D_Renderer/src/matrix.cpp > CMakeFiles/Renderer.dir/src/matrix.cpp.i
+
+CMakeFiles/Renderer.dir/src/matrix.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Renderer.dir/src/matrix.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/arnav25/Desktop/3D_Renderer/src/matrix.cpp -o CMakeFiles/Renderer.dir/src/matrix.cpp.s
+
+CMakeFiles/Renderer.dir/src/ray.cpp.o: CMakeFiles/Renderer.dir/flags.make
+CMakeFiles/Renderer.dir/src/ray.cpp.o: ../src/ray.cpp
+CMakeFiles/Renderer.dir/src/ray.cpp.o: CMakeFiles/Renderer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/arnav25/Desktop/3D_Renderer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Renderer.dir/src/ray.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Renderer.dir/src/ray.cpp.o -MF CMakeFiles/Renderer.dir/src/ray.cpp.o.d -o CMakeFiles/Renderer.dir/src/ray.cpp.o -c /Users/arnav25/Desktop/3D_Renderer/src/ray.cpp
+
+CMakeFiles/Renderer.dir/src/ray.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Renderer.dir/src/ray.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/arnav25/Desktop/3D_Renderer/src/ray.cpp > CMakeFiles/Renderer.dir/src/ray.cpp.i
+
+CMakeFiles/Renderer.dir/src/ray.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Renderer.dir/src/ray.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/arnav25/Desktop/3D_Renderer/src/ray.cpp -o CMakeFiles/Renderer.dir/src/ray.cpp.s
+
+CMakeFiles/Renderer.dir/src/reflection.cpp.o: CMakeFiles/Renderer.dir/flags.make
+CMakeFiles/Renderer.dir/src/reflection.cpp.o: ../src/reflection.cpp
+CMakeFiles/Renderer.dir/src/reflection.cpp.o: CMakeFiles/Renderer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/arnav25/Desktop/3D_Renderer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Renderer.dir/src/reflection.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Renderer.dir/src/reflection.cpp.o -MF CMakeFiles/Renderer.dir/src/reflection.cpp.o.d -o CMakeFiles/Renderer.dir/src/reflection.cpp.o -c /Users/arnav25/Desktop/3D_Renderer/src/reflection.cpp
+
+CMakeFiles/Renderer.dir/src/reflection.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Renderer.dir/src/reflection.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/arnav25/Desktop/3D_Renderer/src/reflection.cpp > CMakeFiles/Renderer.dir/src/reflection.cpp.i
+
+CMakeFiles/Renderer.dir/src/reflection.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Renderer.dir/src/reflection.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/arnav25/Desktop/3D_Renderer/src/reflection.cpp -o CMakeFiles/Renderer.dir/src/reflection.cpp.s
+
 # Object files for target Renderer
 Renderer_OBJECTS = \
 "CMakeFiles/Renderer.dir/src/tuples.cpp.o" \
-"CMakeFiles/Renderer.dir/src/canvas.cpp.o"
+"CMakeFiles/Renderer.dir/src/canvas.cpp.o" \
+"CMakeFiles/Renderer.dir/src/matrix.cpp.o" \
+"CMakeFiles/Renderer.dir/src/ray.cpp.o" \
+"CMakeFiles/Renderer.dir/src/reflection.cpp.o"
 
 # External object files for target Renderer
 Renderer_EXTERNAL_OBJECTS =
 
 libRenderer.a: CMakeFiles/Renderer.dir/src/tuples.cpp.o
 libRenderer.a: CMakeFiles/Renderer.dir/src/canvas.cpp.o
+libRenderer.a: CMakeFiles/Renderer.dir/src/matrix.cpp.o
+libRenderer.a: CMakeFiles/Renderer.dir/src/ray.cpp.o
+libRenderer.a: CMakeFiles/Renderer.dir/src/reflection.cpp.o
 libRenderer.a: CMakeFiles/Renderer.dir/build.make
 libRenderer.a: CMakeFiles/Renderer.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/arnav25/Desktop/3D_Renderer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libRenderer.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/arnav25/Desktop/3D_Renderer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX static library libRenderer.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/Renderer.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Renderer.dir/link.txt --verbose=$(VERBOSE)
 

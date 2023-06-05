@@ -237,6 +237,45 @@ gtest_main/fast:
 .PHONY : gtest_main/fast
 
 #=============================================================================
+# Target rules for targets named reflection_test
+
+# Build rule for target.
+reflection_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 reflection_test
+.PHONY : reflection_test
+
+# fast build rule for target.
+reflection_test/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/reflection_test.dir/build.make tests/CMakeFiles/reflection_test.dir/build
+.PHONY : reflection_test/fast
+
+#=============================================================================
+# Target rules for targets named ray_test
+
+# Build rule for target.
+ray_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ray_test
+.PHONY : ray_test
+
+# fast build rule for target.
+ray_test/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/ray_test.dir/build.make tests/CMakeFiles/ray_test.dir/build
+.PHONY : ray_test/fast
+
+#=============================================================================
+# Target rules for targets named matrix_test
+
+# Build rule for target.
+matrix_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 matrix_test
+.PHONY : matrix_test
+
+# fast build rule for target.
+matrix_test/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/matrix_test.dir/build.make tests/CMakeFiles/matrix_test.dir/build
+.PHONY : matrix_test/fast
+
+#=============================================================================
 # Target rules for targets named canvas_test
 
 # Build rule for target.
@@ -286,6 +325,78 @@ src/canvas.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Renderer.dir/build.make CMakeFiles/Renderer.dir/src/canvas.cpp.s
 .PHONY : src/canvas.cpp.s
 
+src/matrix.o: src/matrix.cpp.o
+.PHONY : src/matrix.o
+
+# target to build an object file
+src/matrix.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Renderer.dir/build.make CMakeFiles/Renderer.dir/src/matrix.cpp.o
+.PHONY : src/matrix.cpp.o
+
+src/matrix.i: src/matrix.cpp.i
+.PHONY : src/matrix.i
+
+# target to preprocess a source file
+src/matrix.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Renderer.dir/build.make CMakeFiles/Renderer.dir/src/matrix.cpp.i
+.PHONY : src/matrix.cpp.i
+
+src/matrix.s: src/matrix.cpp.s
+.PHONY : src/matrix.s
+
+# target to generate assembly for a file
+src/matrix.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Renderer.dir/build.make CMakeFiles/Renderer.dir/src/matrix.cpp.s
+.PHONY : src/matrix.cpp.s
+
+src/ray.o: src/ray.cpp.o
+.PHONY : src/ray.o
+
+# target to build an object file
+src/ray.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Renderer.dir/build.make CMakeFiles/Renderer.dir/src/ray.cpp.o
+.PHONY : src/ray.cpp.o
+
+src/ray.i: src/ray.cpp.i
+.PHONY : src/ray.i
+
+# target to preprocess a source file
+src/ray.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Renderer.dir/build.make CMakeFiles/Renderer.dir/src/ray.cpp.i
+.PHONY : src/ray.cpp.i
+
+src/ray.s: src/ray.cpp.s
+.PHONY : src/ray.s
+
+# target to generate assembly for a file
+src/ray.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Renderer.dir/build.make CMakeFiles/Renderer.dir/src/ray.cpp.s
+.PHONY : src/ray.cpp.s
+
+src/reflection.o: src/reflection.cpp.o
+.PHONY : src/reflection.o
+
+# target to build an object file
+src/reflection.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Renderer.dir/build.make CMakeFiles/Renderer.dir/src/reflection.cpp.o
+.PHONY : src/reflection.cpp.o
+
+src/reflection.i: src/reflection.cpp.i
+.PHONY : src/reflection.i
+
+# target to preprocess a source file
+src/reflection.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Renderer.dir/build.make CMakeFiles/Renderer.dir/src/reflection.cpp.i
+.PHONY : src/reflection.cpp.i
+
+src/reflection.s: src/reflection.cpp.s
+.PHONY : src/reflection.s
+
+# target to generate assembly for a file
+src/reflection.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Renderer.dir/build.make CMakeFiles/Renderer.dir/src/reflection.cpp.s
+.PHONY : src/reflection.cpp.s
+
 src/tuples.o: src/tuples.cpp.o
 .PHONY : src/tuples.o
 
@@ -329,10 +440,22 @@ help:
 	@echo "... gmock_main"
 	@echo "... gtest"
 	@echo "... gtest_main"
+	@echo "... matrix_test"
+	@echo "... ray_test"
+	@echo "... reflection_test"
 	@echo "... tuple_test"
 	@echo "... src/canvas.o"
 	@echo "... src/canvas.i"
 	@echo "... src/canvas.s"
+	@echo "... src/matrix.o"
+	@echo "... src/matrix.i"
+	@echo "... src/matrix.s"
+	@echo "... src/ray.o"
+	@echo "... src/ray.i"
+	@echo "... src/ray.s"
+	@echo "... src/reflection.o"
+	@echo "... src/reflection.i"
+	@echo "... src/reflection.s"
 	@echo "... src/tuples.o"
 	@echo "... src/tuples.i"
 	@echo "... src/tuples.s"
