@@ -9,6 +9,7 @@ add_executable(ray_test RaysTests.cpp)
 add_executable(matrix_test MatrixTests.cpp)
 add_executable(canvas_test CanvasTests.cpp)
 add_executable(tuple_test TupleTests.cpp)
+add_executable(integration_test IntegrationCheckpoint.cpp)
 target_link_libraries(canvas_test PUBLIC 
     gtest_main
     Renderer
@@ -33,6 +34,12 @@ target_link_libraries(matrix_test PUBLIC
     gtest_main
     Renderer
 )
+
+target_link_libraries(integration_test PUBLIC 
+    gtest_main
+    Renderer
+
+    )
 add_test(
     NAME tuple_test
     COMMAND tuple_test
@@ -54,4 +61,9 @@ add_test(
 add_test(
     NAME reflection_test
     COMMAND reflection_test
+)
+
+add_test(
+    NAME integration_test
+    COMMAND integration_test
 )

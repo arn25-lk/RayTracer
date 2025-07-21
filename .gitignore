@@ -1,0 +1,14 @@
+build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+compile_commands.json
+*.o
+*.obj
+*.exe
+*.out
+*.log
+src/reflectOut
+src/matrix.o.dSYM/
+src/out.ppm
