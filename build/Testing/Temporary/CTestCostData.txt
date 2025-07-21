@@ -1,9 +1,0 @@
-tuple_test 0 0
-canvas_test 0 0
-matrix_test 0 0
-ray_test 0 0
----
-tuple_test
-canvas_test
-matrix_test
-ray_test
